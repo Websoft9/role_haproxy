@@ -5,3 +5,8 @@
     name: haproxy
     enabled: yes
     state: restarted
+
+- name: Get Version
+  shell: haproxy -v
+  register: haproxy_ver
+  notify: haproxy version
