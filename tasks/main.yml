@@ -6,7 +6,19 @@
     enabled: yes
     state: restarted
 
-- name: Get Version
-  shell: haproxy -v
-  register: haproxy_ver
-  notify: haproxy version
+# set soft link, -b cover the exist links
+- name: set soft link
+  shell: |
+    ln -sb /etc/haproxy  /data/wwwroot/haproxy
+    ln -sb /etc/haproxy/haproxy.cfg  /data/config/haproxy.cfg
+    
+# Check version
+- block:
+  - name: Check HAProxy Version
+    shell: echo `haproxy -v` >> /data/logs/install_version.txt
+
+# check service state
+- name: Check HAProxy Service
+  shell: systemctl status haproxy |grep Active*
+  register: check_haproxy_service
+  notify: check_haproxy_service
