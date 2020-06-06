@@ -1,6 +1,6 @@
 - include: "{{ansible_os_family}}.yml"
 
-- name: Insert 
+- name: Enable HAProxy Statistics Report
   blockinfile:
     path: /etc/haproxy/haproxy.cfg
     block: |
@@ -15,7 +15,7 @@
           stats hide-version 
           stats admin if TRUE
           
-- name: Start haproxy
+- name: Start and enable haproxy service
   service:
     name: haproxy
     enabled: yes
