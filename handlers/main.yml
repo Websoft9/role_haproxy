@@ -1,3 +1,3 @@
-- name: haproxy version
+- name: check_haproxy_service
   debug:
-    var: haproxy_ver
+    var: check_haproxy_service.stdout
