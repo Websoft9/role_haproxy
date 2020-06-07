@@ -5,7 +5,7 @@
     path: /etc/haproxy/haproxy.cfg
     block: |
       listen admin_stats 
-          bind *:{{haproxy_stats_ports}} 
+          bind *:{{haproxy_stats_port}} 
           mode http 
           maxconn 10 
           stats refresh 10s 
