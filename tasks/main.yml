@@ -22,12 +22,14 @@
       path: /etc/rsyslog.conf
       regexp: '#$ModLoad imudp'
       line: '$ModLoad imudp'
+      backrefs: yes
 
   - name: Provides UDP syslog reception 02
     lineinfile:
       path: /etc/rsyslog.conf
       regexp: '#$UDPServerRun 514'
       line: '$UDPServerRun 514'
+      backrefs: yes
 
   - name: Set save haproxy log
     blockinfile:
