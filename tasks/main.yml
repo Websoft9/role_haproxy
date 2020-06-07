@@ -31,7 +31,7 @@
 
   - name: Set save haproxy log
     blockinfile:
-      path: /etc/haproxy/haproxy.cfg
+      path: /etc/rsyslog.conf
       block: |
         # Save haproxy log
         local2.*  /var/log/haproxy/haproxy.log
