@@ -1,11 +1,11 @@
 Ansible Role: haproxy
 =========
 
-This Role is for installing [HAProxy](https://www.haproxy.org/) and configure its ，并配置stats，开启日志
+This Role is for installing [HAProxy Community](https://www.haproxy.org/) and configure its ，并配置stats，开启日志
 
 ## Requirements
 
-运行本 Role，请确认符合如下的必要条件：
+Make sure these requirements need before the installation
 
 | **Items**      | **Details** |
 | ------------------| ------------------|
@@ -17,7 +17,7 @@ This Role is for installing [HAProxy](https://www.haproxy.org/) and configure it
 
 ## Related roles
 
-本 Role 在运行时需要确保已经运行：common。以下为例：
+This Role does not depend on other role variables in syntax, but it depend on other role before
 
 ```
 roles:
@@ -28,9 +28,9 @@ roles:
 
 ## Variables
 
-本 Role 主要变量以及使用方法如下：
+The main variables of this Role and how to use them are as follows:
 
-| **Items**      | **Details** | **Format**  | **是否初始化** |
+| **Items**      | **Details** | **Format**  | **Need to assignment** |
 | ------------------| ------------------|-----|-----|
 | redis_version | [ 2.8,3.0,3.2,4.0,5.0,stable ] | 字符串 | 否 |
 | redis_install | True,False | 布尔 | 否 |
@@ -53,7 +53,3 @@ roles:
 ```
 
 ## FAQ
-
-#### 如何访问RedisInsight？
-RedisInsight默认仅支持：http://127.0.0.1:8001 这种方式访问，如果将 127.0.0.1 改成 服务器公网IP，RedisInsight会报错，即不支持直接的公网IP地址绑定。必须安装Nginx转发 http://127.0.0.1:8001 才可以访问。
-
