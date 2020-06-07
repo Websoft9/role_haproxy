@@ -14,7 +14,30 @@
           stats auth {{haproxy_stats_username}}:{{haproxy_stats_password}}
           stats hide-version 
           stats admin if TRUE
-          
+
+- block:
+  - name: Provides UDP syslog reception 01
+    replace:
+      path: /etc/rsyslog.conf
+      regexp: '#$ModLoad imudp'
+      replace: '$ModLoad imudp'
+
+  - name: Provides UDP syslog reception 02
+    replace:
+      path: /etc/rsyslog.conf
+      regexp: '#$UDPServerRun 514'
+      replace: '$UDPServerRun 514'
+
+  - name: Set save haproxy log
+    blockinfile:
+    path: /etc/haproxy/haproxy.cfg
+    block: |
+      # Save haproxy log
+      local2.*  /var/log/haproxy/haproxy.log
+
+  - name: Restart 
+    shell: systemctl restart rsyslog
+
 - name: Start and enable haproxy service
   service:
     name: haproxy
