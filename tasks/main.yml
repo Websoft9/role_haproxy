@@ -18,16 +18,16 @@
 # configure log file. refer to: https://www.jianshu.com/p/baa296770bd5
 - block:
   - name: Provides UDP syslog reception 01
-    replace:
+    lineinfile:
       path: /etc/rsyslog.conf
       regexp: '#$ModLoad imudp'
-      replace: '$ModLoad imudp'
+      line: '$ModLoad imudp'
 
   - name: Provides UDP syslog reception 02
-    replace:
+    lineinfile:
       path: /etc/rsyslog.conf
       regexp: '#$UDPServerRun 514'
-      replace: '$UDPServerRun 514'
+      line: '$UDPServerRun 514'
 
   - name: Set save haproxy log
     blockinfile:
