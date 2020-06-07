@@ -1,7 +1,7 @@
 Ansible Role: haproxy
 =========
 
-本 Role 用于在Linux下安装 [redis](https://redis.io/) 和 [RedisInsight](https://redislabs.com/redisinsight/)。
+This Role is for installing [HAProxy](https://www.haproxy.org/) and configure its ，并配置stats，开启日志
 
 ## Requirements
 
