@@ -15,6 +15,7 @@
           stats hide-version 
           stats admin if TRUE
 
+# configure log file. refer to: https://www.jianshu.com/p/baa296770bd5
 - block:
   - name: Provides UDP syslog reception 01
     replace:
@@ -30,10 +31,10 @@
 
   - name: Set save haproxy log
     blockinfile:
-    path: /etc/haproxy/haproxy.cfg
-    block: |
-      # Save haproxy log
-      local2.*  /var/log/haproxy/haproxy.log
+      path: /etc/haproxy/haproxy.cfg
+      block: |
+        # Save haproxy log
+        local2.*  /var/log/haproxy/haproxy.log
 
   - name: Restart 
     shell: systemctl restart rsyslog
