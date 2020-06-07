@@ -34,7 +34,7 @@
       path: /etc/rsyslog.conf
       block: |
         # Save haproxy log
-        local2.*  /var/log/haproxy/haproxy.log
+        local2.*  /var/log/haproxy.log
 
   - name: Restart rsyslog
     shell: systemctl restart rsyslog
