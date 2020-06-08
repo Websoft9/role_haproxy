@@ -48,8 +48,8 @@
 # set soft link, -b cover the exist links
 - name: set soft link
   shell: |
-    ln -sb /etc/haproxy  /data/wwwroot/haproxy
-    ln -sb /etc/haproxy/haproxy.cfg  /data/config/haproxy.cfg
+    ln -sb /etc/haproxy  /data/wwwroot
+    ln -sb /etc/haproxy/haproxy.cfg  /data/config
     
 # Check version
 - block:
