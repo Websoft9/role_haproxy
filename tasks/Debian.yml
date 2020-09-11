@@ -2,8 +2,8 @@
 
 - name: Prepare for install
   shell: |
-    apt-get install --no-install-recommends software-properties-common
-    add-apt-repository ppa:vbernat/haproxy-{{haproxy_version}}
+    apt-get install -y --no-install-recommends software-properties-common
+    add-apt-repository -y ppa:vbernat/haproxy-{{haproxy_version}}
 
 - name: Install haproxy {{haproxy_version}}
   apt: 
