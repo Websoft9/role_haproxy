@@ -1,3 +1,12 @@
-- name: Install haproxy
+# intall refer to: https://haproxy.debian.net/
+
+- name: Prepare for install
+  shell: |
+    apt-get install --no-install-recommends software-properties-common
+    add-apt-repository ppa:vbernat/haproxy-{{haproxy_version}}
+
+- name: Install haproxy {{haproxy_version}}
   apt: 
-    name: haproxy
+    name: haproxy={{haproxy_version}}.\*
+    update_cache: yes
+    state: latest
