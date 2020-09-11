@@ -5,8 +5,7 @@
     apt-get install -y --no-install-recommends software-properties-common
     add-apt-repository -y ppa:vbernat/haproxy-{{haproxy_version}}
 
-- name: Install haproxy {{haproxy_version}}
+- name: Install haproxy {{haproxy_version}} the latest version, don't use "state: latest" which may 
   apt: 
-    name: haproxy={{haproxy_version}}.\*
+    name: haproxy={{haproxy_version}}.*
     update_cache: yes
-    state: latest
