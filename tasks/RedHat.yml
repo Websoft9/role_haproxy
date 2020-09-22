@@ -10,7 +10,7 @@
     chdir: /data
      
 - name: Make install haproxy
-  shell: make TARGET=linux-glibc  PREFIX=/etc/haproxy USE_OPENSSL=1 USE_SYSTEMD=1 USE_PCRE=1  USE_ZLIB=1  && make install
+  shell: make TARGET=linux-glibc  PREFIX=/usr/local/sbin//haproxy USE_OPENSSL=1 USE_SYSTEMD=1 USE_PCRE=1  USE_ZLIB=1  && make install
   args:
     chdir: /data/haproxy
     
