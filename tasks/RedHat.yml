@@ -3,3 +3,8 @@
     src: "{{haproxy_meta[haproxy_version].latest_download_url}}"
     dest: /data/
     remote_src: yes
+
+- name: Rename install package
+  shell: mv haproxy-*  haproxy
+  args:
+    chdir: /data
