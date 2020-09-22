@@ -6,3 +6,23 @@ haproxy_version: "2.2"
 haproxy_stats_username: admin
 haproxy_stats_password: "123456"
 haproxy_stats_port: "1080"
+
+haproxy_meta:
+  "2.2":
+      latest_version: "2.2.3"
+      latest_download_url: "http://www.haproxy.org/download/2.2/src/haproxy-2.2.3.tar.gz"
+  "2.1":
+      latest_version: "2.1.8"
+      latest_download_url: "http://www.haproxy.org/download/2.1/src/haproxy-2.1.8.tar.gz"
+  "2.0":
+      latest_version: "2.0.17"
+      latest_download_url: "http://www.haproxy.org/download/2.0/src/haproxy-2.0.17.tar.gz"
+  "1.9":
+      latest_version: "1.9.16"
+      latest_download_url: "http://www.haproxy.org/download/1.9/src/haproxy-1.9.16.tar.gz"
+  "1.8":
+      latest_version: "1.8.26"
+      latest_download_url: "http://www.haproxy.org/download/1.8/src/haproxy-1.8.26.tar.gz"
+  "1.7":
+      latest_version: "1.7.12"
+      latest_download_url: "http://www.haproxy.org/download/1.7/src/haproxy-1.7.12.tar.gz"
