@@ -8,3 +8,8 @@
   shell: mv haproxy-*  haproxy
   args:
     chdir: /data
+ 
+- name: Copy service
+  copy:
+    src:  haproxy.service
+    dest: /usr/lib/systemd/system/haproxy.service
