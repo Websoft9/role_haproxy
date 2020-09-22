@@ -8,10 +8,6 @@
   shell: mv haproxy-*  haproxy
   args:
     chdir: /data
- 
-- name: Install required packages
-  yum:
-    name: [openssl,openssl-devel,systemd-devel.x86_64]
      
 - name: Make install haproxy
   shell: make TARGET=linux-glibc  PREFIX=/etc/haproxy USE_OPENSSL=1 USE_SYSTEMD=1 USE_PCRE=1  USE_ZLIB=1  && make install
