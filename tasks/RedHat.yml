@@ -1,3 +1,5 @@
-- name: Install haproxy
-  yum: 
-    name: haproxy
+- name: Download haproxy
+  unarchive:
+    src: "{{haproxy_meta[haproxy_version].latest_download_url}}"
+    dest: /data/
+    remote_src: yes
