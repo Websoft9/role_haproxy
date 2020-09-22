@@ -33,3 +33,11 @@
   copy:
     src:  haproxy.service
     dest: /usr/lib/systemd/system/haproxy.service
+
+- name: Create haproxy symbolic link
+  file:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    state: link
+  with_items:
+    - {src: /usr/local/sbin/haproxy,dest: /usr/sbin/haproxy}
