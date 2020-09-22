@@ -8,11 +8,26 @@
   shell: mv haproxy-*  haproxy
   args:
     chdir: /data
-     
+    
+- name: Install required packages
+  yum:
+    name: [gcc,gcc-c++,glibc,glibc-devel,pcre,pcre-devel,openssl,openssl-devel,systemd-devel,net-tools,vim,iotop,bc,zip,unzip,zlib-devel,lrzsz,tree,screen,lsof,tcpdump,wget,ntpdate]
+    
 - name: Make install haproxy
-  shell: make TARGET=linux-glibc  PREFIX=/usr/local/sbin//haproxy USE_OPENSSL=1 USE_SYSTEMD=1 USE_PCRE=1  USE_ZLIB=1  && make install
+  shell: make TARGET=linux-glibc  PREFIX=/usr/local/sbin/haproxy USE_OPENSSL=1 USE_SYSTEMD=1 USE_PCRE=1  USE_ZLIB=1  && make install
   args:
     chdir: /data/haproxy
+
+- name: Recursively change ownership of a directory
+  file:
+    path: /etc/haproxy
+    state: directory
+    recurse: yes
+    
+- name: Copy cfg
+  copy:
+    src:  haproxy.cfg
+    dest: /etc/haproxy/haproxy.cfg
     
 - name: Copy service
   copy:
