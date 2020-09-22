@@ -9,6 +9,10 @@
   args:
     chdir: /data
  
+ - name: Install required packages
+   yum:
+     name: [openssl,openssl-devel,systemd-devel.x86_64]
+
 - name: Copy service
   copy:
     src:  haproxy.service
