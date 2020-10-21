@@ -25,13 +25,13 @@
     recurse: yes
     
 - name: Copy cfg
-  copy:
-    src:  haproxy.cfg
+  template:
+    src:  haproxy.cfg.jinjia2
     dest: /etc/haproxy/haproxy.cfg
     
 - name: Copy service
-  copy:
-    src:  haproxy.service
+  template:
+    src:  haproxy.service.jinjia2
     dest: /usr/lib/systemd/system/haproxy.service
 
 - name: Create haproxy symbolic link
