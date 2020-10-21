@@ -33,6 +33,14 @@
   template:
     src:  haproxy.service.jinja2
     dest: /usr/lib/systemd/system/haproxy.service
+    when: haproxy_version != "1.7"
+
+- name: Copy service
+  shell: |
+    cp /data/haproxy/examples/haproxy.init  /etc/init.d/haproxy
+    chmod 755 /etc/init.d/haproxy
+    systemctl daemon-reload
+  when: haproxy_version == "1.7"
 
 - name: Create haproxy symbolic link
   file:
