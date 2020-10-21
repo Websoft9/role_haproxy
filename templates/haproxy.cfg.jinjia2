@@ -1,0 +1,52 @@
+global
+  daemon  # 指定haproxy服务后台模式运行
+  log  /dev/log local0  # 日志输出配置，最多可设置两个，一般这块跟rsyslog紧密相连
+  maxconn  5000  # haproxy同时能处理最大连接数
+  pidfile  /var/run/haproxy.pid   # haproxy进程pid保存文件
+  spread-checks  3  # 在haproxy后端有着众多服务器的场景中，在精确的时间间隔后统一对众服务器进行健康状况检查可能会带来意外问题；此选项用于将其检查的时间间隔长度上增加或减小一定的随机时长；
+  stats  socket /run/haproxy-master.sock  # 开启haproxy网页监控功能及对应的socket
+
+defaults
+  log  global  # 指定日志配置使用global的log配置
+  maxconn  5000  # 单个代理实例同时允许的最大连接数
+  mode  http  # 实例运行模式，tcp或http
+  option  redispatch  # 连接失败时会话是不是重新分发
+  option  http-server-close # 一旦服务端响应过后server端的连接关闭
+  {% if  haproxy_version > = 2.0 %}
+  option  splice-auto  # 启动套接字的内核自动加速
+  {% endif %}
+  option  dontlognull  # 没有数据传输的请求连接不记录log
+  retries  3  # 请求连接失败的retry次数
+  timeout  http-request 20s  # 创建连接后客户端没能完整发送http请求的超时时间
+  timeout  queue 1m  # 队列等待连接空闲的超时时间
+  timeout  connect 10s  #  创建连接的超时时间
+  timeout  client 1m  # 创建连接后客户端持续不发送请求的超时时间
+  timeout  server 1m  # 后端服务的响应超时时间
+  timeout  check 10s  # 健康检查的请求响应超时时间
+  
+frontend frontend_server01
+  bind *:3001  # 前端服务监听端口
+  maxconn 3000  # 此端口的最大连接数目
+  default_backend default_servers  # 默认使用的后端server
+
+backend default_servers
+  balance source  # 负载均衡的算法，这里采用ip hash
+  option  httpchk  # 开启健康检查功能
+  {% if  haproxy_version > = 2.0 %}
+  option  httplog  # 开启http log
+  {% endif %}
+  option  httpclose
+  timeout server 600s  # 后端server响应haproxy请求的超时时间
+  
+# BEGIN ANSIBLE MANAGED BLOCK
+listen admin_stats 
+    bind *:1080 
+    mode http 
+    maxconn 10 
+    stats refresh 10s 
+    stats uri /haproxy 
+    stats realm Haproxy 
+    stats auth admin:123456
+    stats hide-version 
+    stats admin if TRUE
+# END ANSIBLE MANAGED BLOCK
