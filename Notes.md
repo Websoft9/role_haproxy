@@ -7,3 +7,9 @@
 
 建议 CentOS 下采用编译安装
 
+# 配置文件
+
+haproxy -f 的配置文件如果不运行服务，无法判断是否正确，有个简单快捷的判断方式：
+
+haproxy -f /etc/haproxy/haproxy.cfg
+
