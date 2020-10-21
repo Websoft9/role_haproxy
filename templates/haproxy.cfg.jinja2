@@ -12,7 +12,7 @@ defaults
   mode  http  # 实例运行模式，tcp或http
   option  redispatch  # 连接失败时会话是不是重新分发
   option  http-server-close # 一旦服务端响应过后server端的连接关闭
-  {% if  haproxy_version > = 2.0 %}
+  {% if  haproxy_version >= "2.0" %}
   option  splice-auto  # 启动套接字的内核自动加速
   {% endif %}
   option  dontlognull  # 没有数据传输的请求连接不记录log
@@ -32,7 +32,7 @@ frontend frontend_server01
 backend default_servers
   balance source  # 负载均衡的算法，这里采用ip hash
   option  httpchk  # 开启健康检查功能
-  {% if  haproxy_version > = 2.0 %}
+  {% if  haproxy_version >= "2.0" %}
   option  httplog  # 开启http log
   {% endif %}
   option  httpclose
