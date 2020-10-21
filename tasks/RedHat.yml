@@ -33,7 +33,7 @@
   template:
     src:  haproxy.service.jinja2
     dest: /usr/lib/systemd/system/haproxy.service
-    when: haproxy_version != "1.7"
+  when: haproxy_version != "1.7"
 
 - name: Copy service
   shell: |
