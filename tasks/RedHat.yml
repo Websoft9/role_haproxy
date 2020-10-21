@@ -26,12 +26,12 @@
     
 - name: Copy cfg
   template:
-    src:  haproxy.cfg.jinjia2
+    src:  haproxy.cfg.jinja2
     dest: /etc/haproxy/haproxy.cfg
     
 - name: Copy service
   template:
-    src:  haproxy.service.jinjia2
+    src:  haproxy.service.jinja2
     dest: /usr/lib/systemd/system/haproxy.service
 
 - name: Create haproxy symbolic link
