@@ -2,6 +2,9 @@
 # you must modify the URL when HAProxy have publish new packages
 
 haproxy_meta:
+  "2.5":
+      latest_version: "2.5.0"
+      latest_download_url: "http://www.haproxy.org/download/2.5/src/haproxy-2.5.0.tar.gz"
   "2.4":
       latest_version: "2.4.3"
       latest_download_url: "http://www.haproxy.org/download/2.4/src/haproxy-2.4.3.tar.gz"
