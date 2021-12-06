@@ -8,4 +8,3 @@
 - name: Install haproxy {{haproxy_version}} the latest version, don't use state's value latest which may make error
   apt: 
     name: haproxy={{haproxy_version}}.*
-    update_cache: yes
