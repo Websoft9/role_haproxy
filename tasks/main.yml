@@ -54,7 +54,7 @@
 # Check version
 - block:
   - name: Check HAProxy Version
-    shell: haproxy -v | grep "version"  | sudo tee -a /data/logs/install_version.txt
+    shell: haproxy -v | grep "version" | awk -F " " '{print$1 " " $2 ": " $3}' | sudo tee -a /data/logs/install_version.txt
 
 # check service state
 - name: Check HAProxy Service
